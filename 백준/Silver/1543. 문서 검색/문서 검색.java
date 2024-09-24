@@ -8,32 +8,23 @@ public class Main
         String document = sc.nextLine();
         String searchWord = sc.nextLine();
 
+        int startIndex = 0;
         int count = 0;
 
-        for(int i=0; i<document.length(); i++)
+        while(true)
         {
-            boolean isMatch = true;
+            startIndex = document.indexOf(searchWord, startIndex);
 
-            for(int j=0; j<searchWord.length(); j++)
-            {
-                if((i+j) >= document.length() || document.charAt(i + j) != searchWord.charAt(j)) // 리스트 인덱스 범위 고려
-                {
-                    isMatch = false;
-                    break;
-                }
-                else
-                {
-                    isMatch = true;
-                }
-            }
-
-            if(isMatch)
+            if(startIndex >= 0)
             {
                 count++;
-                i = i + searchWord.length() - 1;
+                startIndex += searchWord.length();
+            }
+            else
+            {
+                break;
             }
         }
-
         System.out.print(count);
     }
 }
