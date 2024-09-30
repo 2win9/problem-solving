@@ -22,15 +22,15 @@ public class Main {
 
         int cnt = 0;
 
-        for(int i=1; i<1000001; i++){
-            if(x-i<=1000000 && x-i>=0){
-                if(countArr[i]>0 && countArr[x-i]>0)
-                    cnt++;
-            }
 
+        for(int i=1; i<=(x-1)/2; i++){
+            if(x-i <= 1000000){
+                if(countArr[i]>0 && countArr[x-i]>0){
+                    cnt++;
+                }
+            }
         }
 
-        cnt = cnt / 2;
 
         bw.write(Integer.toString(cnt));
         bw.flush();
