@@ -20,17 +20,27 @@ public class Main {
     public static void preprocess(){
         int[] triangleNumbers = new int[50];
         int triangleNumberCount = getTriangleNumbers(K_NUMBER, triangleNumbers);
+        boolean[] isSumOfTriangleNumbers = new boolean[K_NUMBER+1];
+
         for(int i=0; i<triangleNumberCount; i++){
             for(int j=0; j<triangleNumberCount; j++){
-                for(int k=0; k<triangleNumberCount; k++){
-                    int sum = triangleNumbers[i]+triangleNumbers[j]+triangleNumbers[k];
-                    if(sum <= K_NUMBER){
-                        isEurekaNumber[sum] = true;
-                    }
+                if(triangleNumbers[i] + triangleNumbers[j] < K_NUMBER){
+                    isSumOfTriangleNumbers[triangleNumbers[i] + triangleNumbers[j]] = true;
                 }
             }
         }
 
+        for(int i=1; i<=K_NUMBER; i++){
+            if(!isSumOfTriangleNumbers[i])
+                continue;
+            for(int j=0; j<triangleNumberCount; j++){
+                int eurekaNumber = i + triangleNumbers[j];
+                if(eurekaNumber > K_NUMBER){
+                    break;
+                }
+                isEurekaNumber[eurekaNumber] = true;
+            }
+        }
     }
 
     public static void main(String[] args) throws IOException{
@@ -38,6 +48,7 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int T = Integer.parseInt(br.readLine());
         preprocess();
+
         while(T-- > 0){
             int K = Integer.parseInt(br.readLine());
             bw.write(isEurekaNumber[K] ? "1\n" : "0\n");
