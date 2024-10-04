@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 14540 KB, 시간: 220 ms
+메모리: 15168 KB, 시간: 132 ms
 
 ### 분류
 
@@ -12,13 +12,13 @@
 
 ### 제출 일자
 
-2024년 10월 1일 17:55:22
+2024년 10월 4일 16:16:47
 
 ### 문제 설명
 
 <p>삼각수 T<sub>n</sub>(n ≥ 1)는 [그림]에서와 같이 기하학적으로 일정한 모양의 규칙을 갖는 점들의 모음으로 표현될 수 있다.</p>
 
-<p style="text-align: center;"><img alt="" src="https://www.acmicpc.net/upload/images2/eureka.png"></p>
+<p style="text-align: center;"><img alt="" src=""></p>
 
 <p style="text-align: center;">[그림]</p>
 
