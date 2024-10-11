@@ -5,15 +5,16 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         String[] nums = br.readLine().split(" ");
-        int N = Integer.parseInt(nums[0]); // B <= 1,000,000,000, ex) 100
+        int N = Integer.parseInt(nums[0]); // N <= 1,000,000,000, ex) 100
         int B = Integer.parseInt(nums[1]); // 2 <= B <= 36, ex) 3
 
         int basePower = 1;
         int K = 0;
 
-        while((long)basePower * B <= N){
+        while((long) basePower * B <= N){
             basePower *= B;
             K++;
         }
@@ -33,12 +34,13 @@ public class Main {
         // 출력
         for(int i=K; i>=0; i--){
             if(arr[i]<10){
-                System.out.print(arr[i]);
+                bw.write(Integer.toString(arr[i]));
             }else{
-                System.out.printf("%c",arr[i]+55);
+                bw.write((char)'A' - 10 + arr[i]);
             }
         }
-
+        bw.flush();
+        bw.close();
         br.close();
     }
 }
