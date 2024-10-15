@@ -1,47 +1,39 @@
-import java.util.Scanner;
+import java.io.*;
 
-public class Main
-{
-    private static final int ALPHABET_COUNT = 26;
+public class Main {
+    static final int ALPHABET_COUNT = 26;
 
-    public static char getMostUsedAlphabet(String str)
-    {
-        int[] alphabetCountArray = new int[ALPHABET_COUNT];
-        char maxAlphabet = '?';
-        int maxAlphabetCount = 0;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        for(int i=0; i<str.length(); i++)
-        {
-            if(str.charAt(i)>=65 && str.charAt(i)<=90) // 소문자
-            {
-                alphabetCountArray[str.charAt(i)-'A']++;
-            }
-            else // 대문자
-            {
-                alphabetCountArray[str.charAt(i)-'a']++;
+        String word = br.readLine();
+        int[] alphabet = new int[ALPHABET_COUNT]; // a ~ z
+
+        int len = word.length();
+        int maxCount = 0;
+        char ans = ' ';
+
+        for(int i=0; i<len; i++){
+            int idx = word.charAt(i);
+            if(idx >= 97)
+                idx -= 32;
+
+            alphabet[idx - 65]++;
+        }
+
+        for(int i=0; i<ALPHABET_COUNT; i++){
+            if(alphabet[i] > maxCount) {
+                maxCount = alphabet[i];
+                ans = (char)(i + 65);
+            } else if (alphabet[i] == maxCount) {
+                ans = '?';
             }
         }
 
-        for(int i=0; i<ALPHABET_COUNT; i++)
-        {
-            if(alphabetCountArray[i] > maxAlphabetCount)
-            {
-                maxAlphabetCount = alphabetCountArray[i];
-                maxAlphabet = (char)('A' + i);
-            }
-            else if(alphabetCountArray[i] == maxAlphabetCount)
-            {
-                maxAlphabet = '?';
-            }
-        }
-
-        return maxAlphabet;
-    }
-
-    public static void main(String[] args)
-    {
-        Scanner sc = new Scanner(System.in);
-        String word = sc.next();
-        System.out.print(getMostUsedAlphabet(word));
+        bw.write(ans);
+        bw.flush();
+        bw.close();
+        br.close();
     }
 }
