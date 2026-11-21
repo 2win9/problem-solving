@@ -1,6 +1,6 @@
 N, K = map(int, input().split())
 coins = []
-cnt = 0
+coin_count = 0
 for _ in range(N):
     coins.append(int(input()))
 
@@ -10,7 +10,7 @@ for coin in coins:
         break
 
     if K//coin > 0:
-        cnt += K//coin
+        coin_count += K//coin
         K %= coin
 
-print(cnt)
+print(coin_count)
